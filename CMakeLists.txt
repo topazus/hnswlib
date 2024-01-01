@@ -32,6 +32,7 @@ else()
     option(HNSWLIB_EXAMPLES "Build examples and tests." OFF)
 endif()
 if(HNSWLIB_EXAMPLES)
+    enable_testing()
     set(CMAKE_CXX_STANDARD 11)
 
     if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -80,26 +81,34 @@ if(HNSWLIB_EXAMPLES)
 
     # tests
     add_executable(multivector_search_test tests/cpp/multivector_search_test.cpp)
+    add_test(NAME multivector_search_test COMMAND multivector_search_test)
     target_link_libraries(multivector_search_test hnswlib)
 
     add_executable(epsilon_search_test tests/cpp/epsilon_search_test.cpp)
+    add_test(NAME epsilon_search_test COMMAND epsilon_search_test)
     target_link_libraries(epsilon_search_test hnswlib)
 
     add_executable(test_updates tests/cpp/updates_test.cpp)
+    add_test(NAME test_updates COMMAND test_updates)
     target_link_libraries(test_updates hnswlib)
 
     add_executable(searchKnnCloserFirst_test tests/cpp/searchKnnCloserFirst_test.cpp)
+    add_test(NAME searchKnnCloserFirst_test COMMAND searchKnnCloserFirst_test)
     target_link_libraries(searchKnnCloserFirst_test hnswlib)
 
     add_executable(searchKnnWithFilter_test tests/cpp/searchKnnWithFilter_test.cpp)
+    add_test(NAME searchKnnWithFilter_test COMMAND searchKnnWithFilter_test)
     target_link_libraries(searchKnnWithFilter_test hnswlib)
 
     add_executable(multiThreadLoad_test tests/cpp/multiThreadLoad_test.cpp)
+    add_test(NAME multiThreadLoad_test COMMAND multiThreadLoad_test)
     target_link_libraries(multiThreadLoad_test hnswlib)
 
     add_executable(multiThread_replace_test tests/cpp/multiThread_replace_test.cpp)
+    add_test(NAME multiThread_replace_test COMMAND multiThread_replace_test)
     target_link_libraries(multiThread_replace_test hnswlib)
 
     add_executable(main tests/cpp/main.cpp tests/cpp/sift_1b.cpp)
+    add_test(NAME main COMMAND main)
     target_link_libraries(main hnswlib)
 endif()
